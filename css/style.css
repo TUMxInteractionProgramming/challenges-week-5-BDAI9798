@@ -33,6 +33,7 @@ button, strong {
     width: 40%;
 
     background-color: #3F51B5; /* temporary background color to see the effect, is completely hidden now */
+    z-index:2;
 }
 
 #chat {
@@ -67,6 +68,7 @@ h1 {
 
     /* MOOCUS image alignment */
     position: relative; /* we need this, so that the image's absolute position is relative to the app bar */
+    z-index:1;
 }
 
 h1#left-app-bar {
@@ -83,14 +85,41 @@ h1 a {
     color: white;
 }
 
-h1 i {
+h1 button.primary {
     /* #7 #icns #str  */
     position:absolute;
     right: 16px;
     /* #7 #icns #small adjust icon size */
     font-size:24px;
+    top:6px;
+    right:0px;
+}
+#app_bar_swap{
+    display: none;
+    align-items: center;
+    padding-right: 0px;
 }
 
+#app_bar_swap.show{
+     display: flex;
+
+}
+
+#app_bar_swap input{
+
+   margin-top:3px;
+   padding:4px;
+   display: block;
+   flex-grow: 1;
+   border:none;
+   font-size: 20px;
+
+   border-radius:2px;
+
+
+
+
+}
 /* CHANNELS LIST */
 
 ul {
@@ -128,19 +157,18 @@ li .channel-meta span {
     background-color: #3F51B5;
     color: white;
     /* appearance */
-    margin: 2px;
-    padding: 2px;
-    border-radius: 2px;
-    font-size: 10px;
+    margin:2px;
+    padding:2px;
+    border-radius:2px;
+    font-size:10px;
 
     /* #8 #channel #centered blue boxes' text content */
     align-self:center;
 }
 
-li i.fas, li i.far  {
+li i.fa {
     /* #7 #icns #small in channels view */
     font-size: 24px;
-    padding-left: 4px;
 }
 
 
@@ -158,15 +186,14 @@ li.selected {
     bottom: 0;
     width: 100%;
     display: flex;
+    height: 72px;
 }
 
-#tab-bar button, #chat-bar button {
-    background-color: white;
-    border: none;
-    font-size: 13px;
-    width: 33%;
+#tab-bar button{
     height: 72px;
-    padding: 16px;
+    width: 33%;
+    margin:0px;
+      
 
     /* flexify the buttons by growing them equally */
     flex-grow: 1;
@@ -193,13 +220,62 @@ li.selected {
 
     /* #7 #icns #smile adjust fa size */
     font-size: 24px;
+    
+}
+#addchannel{
+    width: 56px;
+	height: 56px;
+    min-width: 56px;
+    border-radius: 50%;
+    bottom: 88px;
+    right:16px;
+    position: absolute;
+    font-size: 24px;
+
+}
+button {
+     height:36px;
+     min-width: 64px;
+     font-size: 14px;
+     padding:0 16px;
+     border-radius:2px;
+     margin:8px;
+
+     background-color:white;
+     color:black;
+     border:none;
+     text-transform: uppercase;
+
+
+}
+
+button:hover{
+  background-color:#D9D9D9;
+
+}
+button.primary{
+    background-color:#3F51B5;
+    color:white;
+}
+button.primary:hover, button.primary:active {
+    background-color: #192B8F;
+}
+button.accent{
+      background-color:#CDDC39;
+      color:black;
+}
+button.accent:hover, button.accent:active {
+    background-color: #A7B613;
+}
+button:focus, input:focus{
+    outline:none;
 }
 
 #emojis {
     /* emoji menu */
     /* colors and borders */
     background-color:white;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 
     /* size & alignment */
     position: absolute;
@@ -229,7 +305,14 @@ li.selected {
     /* alignment */
     flex-grow: 1;
 }
+#chat-bar {
+    align-items:center;
+    justify-content: space-between;
+}
 
+#button_create{
+    display: none;
+}
 /* MESSAGES */
 
 .message {
@@ -237,6 +320,7 @@ li.selected {
     margin-bottom: 8px;
     margin-left: 2.5%;
     position: relative;
+    margin-left: 20px;
 }
 
 .message h3 {
@@ -268,6 +352,24 @@ li.selected {
 .message p {
     background-color: white;
     padding: 16px;
+    
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    position: relative;
+}
+.message p:before{
+    /* height:20px;
+    width:20px;
+    background-color: red;*/
+    content: ''; 
+
+    position: absolute;
+    top: 0;
+    left: -20px;
+
+    border-bottom: 20px solid transparent;
+    border-right: 20px solid white;
+
+    filter: drop-shadow(-2px 1px 1px rgba(0, 0, 0, 0.14));
 }
 
 .message button {
@@ -277,11 +379,47 @@ li.selected {
     text-transform: uppercase;
 
     /* right/bottom alignment of button */
+    right:0px;
+    bottom:0px;
     position: absolute;
-    right: 8px;
-    bottom: 8px;
+    
 }
 
 .message.own {
-    margin-left: 17.5%;
+    margin-left: calc(20% - 20px);
+}
+.message.own p::before{
+    left: 100%;
+    border-bottom: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-left: 20px solid white;
+    filter: drop-shadow(2px 0px 1px rgba(0, 0, 0, 0.14));
+
+}
+.shadow--2dp {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.shadow--3dp {
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+}
+
+.shadow--4dp {
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.shadow--6dp {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+
+.shadow--8dp {
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+}
+
+.shadow--16dp {
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.shadow--24dp {
+    box-shadow: 0 9px 46px 8px rgba(0, 0, 0, 0.14), 0 11px 15px -7px rgba(0, 0, 0, 0.12), 0 24px 38px 3px rgba(0, 0, 0, 0.2);
 }

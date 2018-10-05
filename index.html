@@ -11,102 +11,100 @@
     <link rel="stylesheet" href="css/style.css"/>
 
     <!-- embed jquery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
-    <!-- #7 embed font awesome -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /> -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- #7 #icns #fa embed font awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-    <!-- #7 embed external JavaScript file for channel objects -->
+    <!-- #7 #chlob #lnk embed external JavaScript file for channel objects -->
     <script src="js/channels.js"></script>
 
     <!-- embed external JavaScript file for app interaction -->
     <script src="js/script.js"></script>
-
+    <script src="js/emojis-list.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <!-- #8 #channel #onload all channels when the body has loaded -->
-<body onload="listChannels()">
+<body onload="listChannels(compare_new);loademojibox()">
 
 <!-- channel area -->
-<div id="channels">
+<div id="channels" class="shadow--16dp">
 
     <!-- APP BAR for APP TITLE -->
-    <h1 id="left-app-bar">
+    <h1 id="left-app-bar" class="shadow--4dp">
         <img src="http://ip.lfe.mw.tum.de/sections/moocus.png" alt="Moocus, the chatty duck!" style="height: 56px;">
         chatter|app
     </h1>
 
     <!-- CHANNELS -->
     <ul>
-        <!-- #8 #remove all #channels -->
-        <!-- This document will trigger many warning and errors when using the W3C Validator due to comments in comments, which is not allowed. We let them in here so you can check out the solution for Challenge 7. -->
-        <!-- #7  calls our switchChannel with the corresponding OBJECT as an argument -->
-        
-            <!-- <li onclick="switchChannel(yummy)">
+        <!-- #8 #remove all #channels
+        <!-- This document will trigger many warning and errors when using the W3C Validator due to comments in comments, which is not allowed. We let them stay so you can check out the solution for Challenge 7.
+        <!-- #7 #chlob #clk calls our switchChannel with the corresponding OBJECT as an argument --
+        <li onclick="switchChannel(yummy)">
             #Yummy
-            <span class="channel-meta"> -->
-                <!-- #7  replace images with icons-->
-                <!-- <i class="far fa-star"></i>
-                <i class="fas fa-chevron-right"></i>
+            <span class="channel-meta">
+                <!-- #7 #icns #chl replace images with icons--
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-chevron-right"></i>
             </span>
-        </li> -->
-        <!-- #7  calls our switchChannel with the corresponding OBJECT as an argument -->
-        <!-- <li class="selected" onclick="switchChannel(sevencontinents)">
+        </li>
+        <!-- #7 #chlob #clk calls our switchChannel with the corresponding OBJECT as an argument --
+        <li class="selected" onclick="switchChannel(sevencontinents)">
             #SevenContinents
-            <span class="channel-meta"> -->
-                <!-- #7  replace images with icons-->
-                <!-- <i class="far fa-star"></i>
-                <i class="fas fa-chevron-right"></i>
+            <span class="channel-meta">
+                <!-- #7 #icns #chl replace images with icons--
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-chevron-right"></i>
             </span>
-        </li> -->
-        <!-- #7  calls our switchChannel with the corresponding OBJECT as an argument -->
-        <!-- <li onclick="switchChannel(killerapp)">
+        </li>
+        <!-- #7 #chlob #clk calls our switchChannel with the corresponding OBJECT as an argument --
+        <li onclick="switchChannel(killerapp)">
             #KillerApp
-            <span class="channel-meta"> -->
-                <!-- #7  replace images with icons-->
-                <!-- <i class="far fa-star"></i>
-                <i class="fas fa-chevron-right"></i>
+            <span class="channel-meta">
+                <!-- #7 #icns #chl replace images with icons--
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-chevron-right"></i>
             </span>
-        </li> -->
-        <!-- #7  calls our switchChannel with the corresponding OBJECT as an argument -->
-        <!-- <li onclick="switchChannel(firstpersononmars)">
+        </li>
+        <!-- #7 #chlob #clk calls our switchChannel with the corresponding OBJECT as an argument --
+        <li onclick="switchChannel(firstpersononmars)">
             #FirstPersonOnMars
-            <span class="channel-meta"> -->
-                <!-- #7  replace images with icons-->
-                <!-- <i class="far fa-star"></i>
-                <i class="fas fa-chevron-right"></i>
+            <span class="channel-meta">
+                <!-- #7 #icns #chl replace images with icons--
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-chevron-right"></i>
             </span>
-        </li> -->
-        <!-- #7  calls our switchChannel with the corresponding OBJECT as an argument -->
-        <!-- <li onclick="switchChannel(octoberfest)">
+        </li>
+        <!-- #7 #chlob #clk calls our switchChannel with the corresponding OBJECT as an argument --
+        <li onclick="switchChannel(octoberfest)">
             #Octoberfest
-            <span class="channel-meta"> -->
-                <!-- #7  replace images with icons-->
-                <!-- <i class="far fa-star"></i>
-                <i class="fas fa-chevron-right"></i>
+            <span class="channel-meta">
+                <!-- #7 #icns #chl replace images with icons--
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-chevron-right"></i>
             </span>
-        </li> -->
-       
+        </li>
+        -->
     </ul>
+    <button id="addchannel" onclick="swap_appbar()" class="accent shadow--6dp"><i class="fa fa-plus"></i></button>
+
 
     <!-- TAB BAR -->
-    <div id="tab-bar">
-        <button class="selected" id="tab-new" onclick="selectTab('#tab-new')">
-            <!-- #7  replacing icons -->
-            <i class="far fa-lightbulb"></i>
+    <div id="tab-bar" class="shadow--4dp">
+        <button class="selected" id="tab-new" onclick="selectTab('#tab-new'); listChannels(compare_new)">
+            <!-- #7 #icns #tab replacing icons -->
+            <i class="fa fa-lightbulb-o"></i>
             New
         </button>
-        <button id="tab-trending" onclick="selectTab('#tab-trending')">
-            <!-- #7  replacing icons -->
-            <i class="fas fa-fire"></i>
+        <button id="tab-trending" onclick="selectTab('#tab-trending'); listChannels(compare_trending)">
+            <!-- #7 #icns #tab replacing icons -->
+            <i class="fa fa-fire"></i>
             Trending
         </button>
-        <button id="tab-favorites" onclick="selectTab('#tab-favorites')">
-            <!-- #7  replacing icons -->
-            <i class="fas fa-star"></i>
+        <button id="tab-favorites" onclick="selectTab('#tab-favorites'); listChannels(compare_favortites)">
+            <!-- #7 #icns #tab replacing icons -->
+            <i class="fa fa-star"></i>
             Favorites
         </button>
     </div>
@@ -115,20 +113,26 @@
 <div id="chat">
 
     <!-- APP BAR for CHANNEL TITLE -->
-    <h1>
+    <h1  class="shadow--4dp" id="app_bar_static">
         <span id="channel-name">#SevenContinents</span>
         <small id="channel-location">by <strong>cheeses.yard.applies</strong></small>
-        <!-- #7 star is now font-awesome -->
-        <i class="fas fa-star" onclick="star()"></i>
+        <!-- #7 #icns #str: star is now font-awesome -->
+        <button class="primary">
+            <i class="fa fa-star" onclick="star()"> </i>
+         </button>
+    </h1>
+    <h1 class="shadow--4dp" id="app_bar_swap">
+      <input type="text" placeholder="Enter a #ChannelName"  id="newchannel">
+      <button onclick="abortion()"><i class="fa fa-times"></i>ABORT</button>
     </h1>
 
     <div id="messages">
 
-        <div class="message own">
+        <!-- <div class="message own">
             <h3><a href="http://w3w.co/cheeses.yard.applies" target="_blank"><strong>cheeses.yard.applies</strong></a>
                 Wed, June 20th, 13:37 <em>15 min. left</em></h3>
             <p>What's the place you folks call home?</p>
-            <button>+5 min.</button>
+            <button >+5 min.</button>
         </div>
 
         <div class="message">
@@ -167,22 +171,23 @@
                 Wed, June 20th, 04:08 <em>15 min. left</em></h3>
             <p>北京</p>
             <button>+5 min.</button>
-        </div>
+        </div> -->
 
     </div>
 
     <!-- ChAT BAR -->
-    <div id="chat-bar">
-        <button id="emojis-button" onclick="toggleEmojis()">
-            <!-- #7 replacing icons -->
-            <i class="far fa-smile"></i>
+    <div id="chat-bar" class="shadow--4dp">
+        <button id="emojis-button" onclick="toggleEmojis()" class="primary">
+            <!-- #7 #icns #smile replacing icons -->
+            <i class="fa fa-smile-o"></i>
         </button>
-        <div id="emojis">&#x1F601; &#x1F602; &#x1F603; &#x1F604; &#x1F605; &#x1F606; &#x1F607;</div>
-        <!-- #8 create a new input element which accepts text and has a prefill as well as a character limit.
-               It also gets an id -->
+        <div id="emojis" class="shadow--8dp">&#x1F601; &#x1F602; &#x1F603; &#x1F604; &#x1F605; &#x1F606; &#x1F607;</div>
+        <!-- #8 create a new #input #element which accepts text and has a #prefill as well as a character #imit.
+               For #real, it also gets an id -->
         <input type="text" placeholder="Message..." maxlength="140" id="message">
-        <!-- #8 send message requires a button -->
-        <button onclick="sendMessage()"><i class="fas fa-arrow-right"></i></button>
+        <!-- #8 #message #send requires a button -->
+        <button class="accent" onclick="sendMessage()" id="button_send_message"> <i class="fa fa-arrow-right"></i></button>
+        <button class="accent" onclick="createNewChannel()" id="button_create">CREATE</button>
     </div>
 </div>
 
